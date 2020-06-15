@@ -1,0 +1,35 @@
+default:  # 全局配置项,对所有job生效
+  image:
+  services:
+  before_script:
+    - echo "before_script"
+  after_script:
+    - echo "after_script"
+  tags:
+  cache:
+  artifacts:
+  retry:
+  timeout:
+  interruptible:
+
+variables:
+  name: ali2
+
+
+
+job1:
+  stage: build
+  script:
+    - echo "job1 build-stage $name"
+
+job2:
+  inherit:  # 继承,只针对default和variables,值为false表示不继承,或指定列表只继承指定项,默认为true
+    default: false
+    variables: false
+  script:
+    - echo "job2 test-stage hhhhhhhhhhhhh"
+
+job3:
+  stage: deploy
+  script:
+    - echo "job3 build-stage"
