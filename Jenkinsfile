@@ -3,7 +3,7 @@ import hudson.model.*;
 println env.JOB_NAME
 println env.BUILD_NUMBER
 def _version="0.1"  // 定义变量
-def exists = fileExists '/srv/test'
+
 pipeline {  // 任何有效的声明式流水线必须包含在pipeline关键字语句块中
     agent any  // 可用参数有none|label|node|docker|dockerfile等,必选项
 	parameters {  // 参数类似于带描述信息的环境变量,但在构建过程中不显式调用则程序无法使用,非必选项
