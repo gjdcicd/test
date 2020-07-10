@@ -63,8 +63,9 @@ pipeline {  // 任何有效的声明式流水线必须包含在pipeline关键字
 					//git url: 'https://github.com/gjdcicd/test.git'  // git clone
 					// error("文件不存在")
 				}else {
+					echo("文件存在")
 				}
-				//git branch -r|grep -v origin/HEAD|awk '{split($1,res,"/");system("git checkout "res[2]";git pull")}END{system("git checkout master")}'
+				sh("""cd /srv/;git branch -r|grep -v origin/HEAD|awk '{split($1,res,"/");system("git checkout "res[2]";git pull")}END{system("git checkout master")}'""")
 			}
 			echo "post是在整个流水线完成后执行的收尾工作"  // 可用参数:always/changed/failure/success/unstable/aborted
 		}
