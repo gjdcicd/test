@@ -11,6 +11,11 @@ pipeline {  // 任何有效的声明式流水线必须包含在pipeline关键字
     }
 	environment {  // 非必选项
         KEY= "环境变量"  // 使用${env.KEY}或$env.KEY获取
+		EXISTS = """${sh(
+			returnStdout: true,
+			script: 'if [ -d /srv/test/ ];then echo true;fi'
+		)}"""
+
     }
 	options {  // 非必选项
 		timeout(time: 3, unit: 'MINUTES')  // 流水线构建超时时长,可指定MINUTES/HOURS
