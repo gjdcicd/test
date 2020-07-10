@@ -24,7 +24,7 @@ pipeline {  // 任何有效的声明式流水线必须包含在pipeline关键字
 		retry(0)
 	}
 	triggers {  // 触发器,非必选项
-	  pollSCM('H/2 * * * *')  // 检查仓库变化触发
+	  //pollSCM('H/2 * * * *')  // 检查仓库变化触发
       // cron('* * * * *')
 	  // upstream(upstreamProjects: 'job1,job2', threshold: hudson.model.Result.SUCCESS)
 	}
@@ -43,7 +43,7 @@ pipeline {  // 任何有效的声明式流水线必须包含在pipeline关键字
 			when { environment name: 'EXISTS', value: 'true' }
             steps {
 				script {
-					if (exists) {
+					if ($exists) {
 						echo 'Yes目录存在'
 					} else {
 						echo 'No目录不存在'
