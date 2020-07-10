@@ -49,10 +49,10 @@ pipeline {  // 任何有效的声明式流水线必须包含在pipeline关键字
         stage('Deploy') {
             steps {
                 echo '部署中...'
+				withEnv(['VAR_NAME=环境变量']) {
+		　　	sh "echo ${VAR_NAME}"
+				}
             }
-			withEnv(['VAR_NAME=环境变量']) {
-	　　	sh "echo ${VAR_NAME}"
-			}
         }
 	}
 	post {  // 非必选项
