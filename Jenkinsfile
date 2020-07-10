@@ -55,11 +55,13 @@ pipeline {  // 任何有效的声明式流水线必须包含在pipeline关键字
 	post {  // 非必选项
 		always {
 			script {
-				if(fileExists('/srv/test/') == true) {
-					echo("文件存在")
+				if(fileExists('/srv/test') != true) {  // fileExists内置函数测试文件或目录是否存在
+					echo("文件不存在")
+					git url: 'https://github.com/gjdcicd/test.git'  // git clone
+					// error("文件不存在")
 				}else {
-					error("文件不存在")
 				}
+				//git branch -r|grep -v origin/HEAD|awk '{split($1,res,"/");system("git checkout "res[2]";git pull")}END{system("git checkout master")}'
 			}
 			echo "post是在整个流水线完成后执行的收尾工作"  // 可用参数:always/changed/failure/success/unstable/aborted
 		}
