@@ -1,4 +1,5 @@
 import hudson.model.*;
+import hudson.FilePath;
  
 println env.JOB_NAME
 println env.BUILD_NUMBER
