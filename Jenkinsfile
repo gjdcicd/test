@@ -40,6 +40,7 @@ pipeline {  // 任何有效的声明式流水线必须包含在pipeline关键字
 	}
 	post {  // 非必选项
 		always {
+			when { -e /srv/test/ }
 			echo "post是在整个流水线完成后执行的收尾工作"  // 可用参数:always/changed/failure/success/unstable/aborted
 		}
 	}
