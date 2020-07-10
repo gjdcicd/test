@@ -10,7 +10,7 @@ pipeline {  // 任何有效的声明式流水线必须包含在pipeline关键字
         KEY= "环境变量"  // 使用${env.KEY}或$env.KEY获取
 		EXISTS = """${sh(
 			returnStdout: true,
-			script: 'if [ -d '/srv/test/' ];then echo true;fi'
+			script: 'if [ -d /srv/test/ ];then echo true;fi'
 		)}"""
 		//EXISTS = `if [ -d '/srv/test/' ];then echo true;fi`
     }
