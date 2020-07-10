@@ -12,7 +12,7 @@ pipeline {  // 任何有效的声明式流水线必须包含在pipeline关键字
 	//booleanParam(name: 'EXITS', defaultValue: 1 -eq 1, description: '布尔参数')
     }
 	environment {  // 非必选项
-        KEY= "环境变量"  // 使用${env.KEY}或$env.KEY或${KEY}获取
+        KEY= "环境变量"  // 使用${env.KEY}或${KEY}获取
 		EXISTS = """${sh(
 			returnStdout: true,
 			script: 'if [ -d /srv/test/ ];then echo true;fi'
@@ -40,9 +40,10 @@ pipeline {  // 任何有效的声明式流水线必须包含在pipeline关键字
 			}
 		}
 		stage('Test') {
-			//when { environment name: 'EXISTS', value: 'value' }
+			when { environment name: 'EXISTS', value: 'true' }
             steps {
-                echo "测${EXISTS}试$env.EXISTS中...${env.EXISTS}"
+				echo "环境变量EXISTS值为${EXISTS}"
+                echo "测试中..."
             }
         }
         stage('Deploy') {
@@ -54,7 +55,7 @@ pipeline {  // 任何有效的声明式流水线必须包含在pipeline关键字
 	post {  // 非必选项
 		always {
 			script {
-				if(fileExists('/srv/test') == true) {
+				if(fileExists('/srv/test/') == true) {
 					echo("文件存在")
 				}else {
 					error("文件不存在")
