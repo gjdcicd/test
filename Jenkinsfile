@@ -43,11 +43,12 @@ pipeline {  // 任何有效的声明式流水线必须包含在pipeline关键字
 			when { environment name: 'EXISTS', value: 'true' }
             steps {
 				script {
-					if (EXISTS) {
-						echo 'Yes目录存在'
-					} else {
-						echo 'No目录不存在'
+					if(fileExists('/srv/test') == true) {
+						echo("json file is exists")
+					}else {
+						error("here haven't find json file")
 					}
+
 				}
                 echo '测试中...'
             }
