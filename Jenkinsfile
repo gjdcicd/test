@@ -42,7 +42,7 @@ pipeline {  // 任何有效的声明式流水线必须包含在pipeline关键字
 		stage('Test') {
 			//when { environment name: 'EXISTS', value: 'value' }
             steps {
-                echo '${EXISTS}测试中...${env.EXISTS}'
+                echo "${EXISTS}测试中...${env.EXISTS}"
             }
         }
         stage('Deploy') {
