@@ -3,7 +3,7 @@ pipeline {  // 任何有效的声明式流水线必须包含在pipeline关键字
     agent any  // 可用参数有none|label|node|docker|dockerfile等,必选项
 	parameters {  // 参数类似于带描述信息的环境变量,但在构建过程中不显式调用则程序无法使用,非必选项
         string(name: 'NAME', defaultValue: 'VAL', description: '描述')  // 使用${params.NAME}获取
-	booleanParam(name: 'EXITS', defaultValue: if [ -d '/srv/test/' ];then return true;fi, description: '布尔参数')
+	booleanParam(name: 'EXITS', defaultValue: 1 -eq 1, description: '布尔参数')
     }
 	environment {  // 非必选项
         KEY= "环境变量"  // 使用${env.KEY}或$env.KEY获取
