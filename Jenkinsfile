@@ -1,3 +1,7 @@
+import hudson.model.*;
+ 
+println env.JOB_NAME
+println env.BUILD_NUMBER
 def _version="0.1"  // 定义变量
 //def exists = fileExists '/srv/test'
 pipeline {  // 任何有效的声明式流水线必须包含在pipeline关键字语句块中
@@ -34,15 +38,15 @@ pipeline {  // 任何有效的声明式流水线必须包含在pipeline关键字
 				}
 			}
 		}
-        stage('Deploy') {
-            steps {
-                echo '部署中...'
-            }
-        }
 		stage('Test') {
 			when { environment name: 'EXISTS', value: 'true' }
             steps {
                 echo '测试中...'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo '部署中...'
             }
         }
 	}
