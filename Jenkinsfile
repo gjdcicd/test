@@ -15,7 +15,7 @@ pipeline {  // 任何有效的声明式流水线必须包含在pipeline关键字
     }
 	options {  // 非必选项
 		timeout(time: 3, unit: 'MINUTES')  // 流水线构建超时时长,可指定MINUTES/HOURS
-		retry(0)
+		retry(1)
 	}
 	triggers {  // 触发器,非必选项
 	  pollSCM('H/2 * * * *')  // 检查仓库变化触发
