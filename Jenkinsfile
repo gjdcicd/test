@@ -40,16 +40,8 @@ pipeline {  // 任何有效的声明式流水线必须包含在pipeline关键字
 			}
 		}
 		stage('Test') {
-			//when { environment name: 'EXISTS', value: 'true' }
+			when { environment name: 'EXISTS', value: true }
             steps {
-				script {
-					if(fileExists('/srv/test2') == true) {
-						echo("json file is exists")
-					}else {
-						error("here haven't find json file")
-					}
-
-				}
                 echo '测试中...'
             }
         }
@@ -61,6 +53,13 @@ pipeline {  // 任何有效的声明式流水线必须包含在pipeline关键字
 	}
 	post {  // 非必选项
 		always {
+			script {
+				if(fileExists('/srv/test') == true) {
+					echo("文件存在")
+				}else {
+					error("文件不存在")
+				}
+			}
 			echo "post是在整个流水线完成后执行的收尾工作"  // 可用参数:always/changed/failure/success/unstable/aborted
 		}
 	}
