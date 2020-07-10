@@ -46,13 +46,15 @@ pipeline {  // 任何有效的声明式流水线必须包含在pipeline关键字
                 echo "测试中..."
             }
         }
+		
         stage('Deploy') {
-            steps {
-                echo '部署中...'
-				withEnv(['VAR_NAME=环境变量']) {
+			withEnv(['VAR_NAME=环境变量']) {
 		　　	sh "echo ${VAR_NAME}"
-				}
+		steps {
+                echo '部署中...'
             }
+				}
+            
         }
 	}
 	post {  // 非必选项
