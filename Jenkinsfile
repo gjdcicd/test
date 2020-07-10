@@ -58,8 +58,9 @@ pipeline {  // 任何有效的声明式流水线必须包含在pipeline关键字
 				if(fileExists('/srv/test') != true) {  // fileExists内置函数测试文件或目录是否存在
 					echo("文件不存在")
 					sh "pwd"
-					sh("cd /srv/")
-					git url: 'https://github.com/gjdcicd/test.git'  // git clone
+					sh("cd /srv/;git clone https://github.com/gjdcicd/test.git")
+					sh "pwd"
+					//git url: 'https://github.com/gjdcicd/test.git'  // git clone
 					// error("文件不存在")
 				}else {
 				}
