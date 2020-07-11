@@ -18,7 +18,7 @@ pipeline {  // 任何有效的声明式流水线必须包含在pipeline关键字
 			//script: 'if [ -d /srv/test/ ];then echo true;fi'
 			returnStatus: true,
 			script: '[ -d /srv/test/ ]'
-		).trim()}"""
+		)}"""
 		//EXISTS = `if [ -d '/srv/test/' ];then echo true;fi`
     }
 	options {  // 非必选项
