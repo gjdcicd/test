@@ -49,15 +49,14 @@ pipeline {  // 任何有效的声明式流水线必须包含在pipeline关键字
                 echo "测试中..."
             }
         }
-		withEnv(['VAR_NAME=环境变量']) {
-　　	sh "echo ${VAR_NAME}"
-stage('Deploy') {
-            steps {
-                echo '部署中...'
-            }
-        }
+		stage('Deploy') {
+			steps {
+				echo '部署中...'
+				withEnv(["ANOTHER_ENV_VAR=here is some value"]) {
+                    echo "ANOTHER_ENV_VAR = ${env.ANOTHER_ENV_VAR}"
+                }
+			}
 		}
-        
 	}
 	post {  // 非必选项
 		always {
