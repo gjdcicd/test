@@ -44,98 +44,15 @@ pipeline {  // 任何有效的声明式流水线必须包含在pipeline关键字
                 echo "测试中..."
             }
         }
-		stage('A1') {
-			when { expression { EXISTS } }
-            steps {
-				echo "环境变量EXISTS=${EXISTS},当前为A1"
-            }
-        }
-		stage('A2') {
-			when { expression { return EXISTS } }
-            steps {
-				echo "环境变量EXISTS=${EXISTS},当前为A2"
-            }
-        }
-		stage('A3') {
-			when { expression { env.EXISTS } }
-            steps {
-				echo "环境变量EXISTS=${EXISTS},当前为A3"
-            }
-        }
-		stage('A4') {
-			when { expression { return env.EXISTS } }
-            steps {
-				echo "环境变量EXISTS=${EXISTS},当前为A4"
-            }
-        }
-		stage('A5') {
-			when { expression { !!EXISTS } }
-            steps {
-				echo "环境变量EXISTS=${EXISTS},当前为A5"
-            }
-        }
-		stage('A6') {
-			when { expression { return !!EXISTS } }
-            steps {
-				echo "环境变量EXISTS=${EXISTS},当前为A6"
-            }
-        }
-		stage('A7') {
-			when { expression { !!env.EXISTS } }
-            steps {
-				echo "环境变量EXISTS=${EXISTS},当前为A7"
-            }
-        }
-		stage('A8') {
-			when { expression { return !!env.EXISTS } }
-            steps {
-				echo "环境变量EXISTS=${EXISTS},当前为A8"
-            }
-        }
-		stage('A9') {
-			when { expression { EXISTS == 0 } }
-            steps {
-				echo "环境变量EXISTS=${EXISTS},当前为A9"
-            }
-        }
-		stage('A10') {
-			when { expression { EXISTS == 1 } }
-            steps {
-				echo "环境变量EXISTS=${EXISTS},当前为A10"
-            }
-        }
-		stage('A11') {
-			when { expression { return EXISTS == 0 } }
-            steps {
-				echo "环境变量EXISTS=${EXISTS},当前为A11"
-            }
-        }
-		stage('A12') {
-			when { expression { return EXISTS == 1 } }
-            steps {
-				echo "环境变量EXISTS=${EXISTS},当前为A12"
-            }
-        }
-		stage('A13') {
-			when { expression { env.EXISTS == 0 } }
-            steps {
-				echo "环境变量EXISTS=${EXISTS},当前为A13"
-            }
-        }
-		stage('A14') {
-			when { expression { env.EXISTS == 1 } }
-            steps {
-				echo "环境变量EXISTS=${EXISTS},当前为A14"
-            }
-        }
+		
 		stage('A15') {
-			when { expression { return env.EXISTS == 0 } }
+			when { expression { EXISTS == "0" } }
             steps {
 				echo "环境变量EXISTS=${EXISTS},当前为A15"
             }
         }
 		stage('A16') {
-			when { expression { return env.EXISTS == 1 } }
+			when { expression { EXISTS == "true" } }
             steps {
 				echo "环境变量EXISTS=${EXISTS},当前为A16"
             }
