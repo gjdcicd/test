@@ -52,8 +52,8 @@ pipeline {  // 任何有效的声明式流水线必须包含在pipeline关键字
 		stage('Deploy') {
 			steps {
 				echo '部署中...'
-				withEnv(["ANOTHER_ENV_VAR=here is some value"]) {
-                    echo "ANOTHER_ENV_VAR = ${env.ANOTHER_ENV_VAR}"
+				withEnv(["CUSTOM_VAR=自定义变量"]) {
+                    echo "CUSTOM_VAR为${env.CUSTOM_VAR}"
                 }
 			}
 		}
