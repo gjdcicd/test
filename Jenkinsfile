@@ -38,7 +38,7 @@ pipeline {  // 任何有效的声明式流水线必须包含在pipeline关键字
 		}
 		stage('Test') {
 			//when { environment name: 'EXISTS', value: 'true' }
-			when { expression { EXISTS } }
+			when { expression { return env.EXISTS } }
             steps {
 				echo "环境变量EXISTS值为${EXISTS}"
                 echo "测试中..."
