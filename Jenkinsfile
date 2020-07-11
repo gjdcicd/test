@@ -14,8 +14,10 @@ pipeline {  // 任何有效的声明式流水线必须包含在pipeline关键字
 	environment {  // 非必选项
         KEY= "环境变量"  // 使用${env.KEY}或${KEY}获取
 		EXISTS = """${sh(
-			returnStdout: true,
-			script: 'if [ -d /srv/test/ ];then echo true;fi'
+			//returnStdout: true,
+			//script: 'if [ -d /srv/test/ ];then echo true;fi'
+			returnStatus: true,
+			script: '[ -d /srv/test/ ]'
 		).trim()}"""
 		//EXISTS = `if [ -d '/srv/test/' ];then echo true;fi`
     }
@@ -40,7 +42,8 @@ pipeline {  // 任何有效的声明式流水线必须包含在pipeline关键字
 			}
 		}
 		stage('Test') {
-			when { environment name: 'EXISTS', value: 'true' }
+			//when { environment name: 'EXISTS', value: 'true' }
+			when { expression { EXISTS } }
             steps {
 				echo "环境变量EXISTS值为${EXISTS}"
                 echo "测试中..."
