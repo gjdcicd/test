@@ -38,7 +38,7 @@ pipeline {  // 任何有效的声明式流水线必须包含在pipeline关键字
 		}
 		stage('Test') {
 			//when { environment name: 'EXISTS', value: 'true' }
-			when { expression { return env.EXISTS } }
+			when { expression { return !env.EXISTS } }
             steps {
 				echo "环境变量EXISTS值为${EXISTS}"
                 echo "测试中..."
@@ -63,7 +63,7 @@ pipeline {  // 任何有效的声明式流水线必须包含在pipeline关键字
 					//git url: 'https://github.com/gjdcicd/test.git'  // git clone
 					// error("文件不存在")
 				}else {
-					echo("h文件存在")
+					echo("文件存在")
 				}
 				sh('cd /srv/test/;git branch -r|grep -v origin/HEAD|awk \'{split($1,res,"/");system("git checkout "res[2]";git pull")}END{system("git checkout master")}\'')
 			}
